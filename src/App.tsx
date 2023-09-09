@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { addCounter, setStep } from "./modules/counter";
+import { addCounter, setStep } from "./store/counterSlice";
 
 function App() {
   const state = useSelector((state) => state.counter);
@@ -14,7 +14,7 @@ function App() {
     <>
       <input type="number" value={state.step} onChange={handleChange} />
       <p>{state.count}</p>
-      <button onClick={() => dispatch(addCounter())}>Add</button>
+      <button onClick={() => dispatch(addCounter())}>add</button>
     </>
   );
 }
