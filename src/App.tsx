@@ -1,19 +1,20 @@
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addCounter, setStep } from "./modules/counter";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const state = useSelector((state) => state.counter);
+  const dispatch = useDispatch();
+
+  const handleChange = (e) => {
+    const step = Number(e.target.value);
+    dispatch(setStep(step));
+  };
 
   return (
     <>
-      <div></div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
+      <input type="number" value={state.step} onChange={handleChange} />
+      <p>{state.count}</p>
+      <button onClick={() => dispatch(addCounter())}>Add</button>
     </>
   );
 }
